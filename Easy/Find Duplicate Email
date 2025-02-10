@@ -1,0 +1,15 @@
+Please provide an SQL query to generate a report of duplicate emails. It can be assumed that the email field will
+always have a value, and the resulting table can be in any order.
+
+**Schema**
+Table Name: Person
+Name	          Type
+id	          INTEGER
+email	          TEXT
+
+**Solution**
+
+SELECT email
+FROM Person
+GROUP BY email
+HAVING COUNT(id)>1
