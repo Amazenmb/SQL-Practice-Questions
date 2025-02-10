@@ -1,0 +1,40 @@
+Given a table containing information on various queries executed on a database, including their results, positions, and ratings, we need to calculate the quality of each query and the percentage of poor queries. Query quality is determined by the average ratio between query rating and position, while poor query percentage represents the proportion of queries with a rating less than 3.
+
+Quality:
+
+- The quality of a query represents the average effectiveness of the query, typically measured as the ratio of the query's rating to its position.
+- It can be calculated using the following formula: 
+    - ​$quality= (\sum_{i=1}^{n} (rating_i/position_i))/n$
+- Where:
+    - $n$ is the total number of queries.
+    - rating $rating_i$is the rating of the $i^{th}$query.
+    - position $position_i$ is the position of the $i^{th}$ query in the result set.
+Poor Quality Percentage
+
+- The poor query percentage indicates the proportion of queries with a low rating, typically defined as a rating less than 3.
+- It can be calculated using the following formula: $Poor Query Percentage=(Number of Poor Queries/Total Number of Queries)×100$
+- Where:
+    - Number of Poor QueriesNumber of Poor Queries is the count of queries with a rating less than 3.
+    - Total Number of QueriesTotal Number of Queries is the total count of queries.<p><strong>Example 1:</strong></p>
+
+**Schema**
+Table Name: Queries
+Name	Type
+query_name	TEXT
+result	TEXT
+position	INTEGER
+rating	INTEGER
+
+
+
+**Solution**
+SELECT 
+  query_name,
+  printf('%.2f', ROUND(AVG(rating * 100.0 / position), 0) / 100) AS quality,
+  printf('%.2f', ROUND(AVG(CASE WHEN rating < 3 THEN 1 ELSE 0 END) * 100.0, 2)) AS poor_query_percentage
+FROM 
+  Queries
+WHERE 
+  query_name IS NOT NULL
+GROUP BY 
+  query_name;
