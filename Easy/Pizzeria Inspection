@@ -1,0 +1,19 @@
+Q. Identify pizza establishments that may require a closer look based on their recent health inspection scores. Retrieve the inspection dates and associated 
+violations for pizzerias named "PIZZA PARADISO" that have received scores below 85.
+**Schema**
+Table Name: chicago_pizza_health_inspections
+
+  Name	                  Type
+serial_number	          TEXT
+activity_date	        DATE_TIME
+facility_name	          TEXT
+score	                INTEGER
+pe_description	        TEXT
+
+
+**Solution**
+
+SELECT activity_date, pe_description
+FROM chicago_pizza_health_inspections
+WHERE facility_name='PIZZA PARADISO'
+AND score<85
