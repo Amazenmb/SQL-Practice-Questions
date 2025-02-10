@@ -1,0 +1,20 @@
+Determine the number of workers recruited by each department since the start of June.
+Output department names alongside their corresponding new-hire counts.
+Arrange results in descending order based on the number of new workers.
+
+**Schema**
+Table Name: worker
+Name	Type
+worker_id	INTEGER
+first_name	TEXT
+last_name	TEXT
+salary	INTEGER
+joining_date	DATE_TIME
+department	TEXT
+
+**Solution**
+SELECT department, COUNT(worker_id) AS num_workers
+FROM worker
+WHERE joining_date>='2024-06-01'
+    GROUP BY department
+ORDER BY num_workers DESC
