@@ -1,0 +1,27 @@
+Query: Given a table named MyNumbers with a column num containing integers, the task is to find the largest number that appears only once in the table. If there are no such numbers, return null.
+
+**Schema**
+
+Table Name: MyNumbers
+Name	Type
+num	INTEGER
+
+**Solution 1**
+SELECT MAX(num) AS num
+FROM MyNumbers
+GROUP BY num 
+HAVING COUNT(num)<2
+ORDER BY num DESC
+LIMIT 1
+
+**Solution 2**
+
+SELECT
+    MAX(num) AS num
+FROM
+    (SELECT
+        num
+    FROM
+        MyNumbers
+    GROUP BY num
+    HAVING COUNT(num) = 1) AS t;
