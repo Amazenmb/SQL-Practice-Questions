@@ -1,0 +1,14 @@
+Query: Given a table of orders, find the customer who has placed the largest number of orders.
+
+**Schema**
+Table Name: Orders
+Name	Type
+order_number	INTEGER
+customer_number	INTEGER
+
+**Solution**
+SELECT customer_number
+FROM Orders
+GROUP BY customer_number
+ORDER BY COUNT(order_number) DESC
+LIMIT 1
