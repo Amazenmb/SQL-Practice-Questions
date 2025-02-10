@@ -1,0 +1,21 @@
+Query: Determine the frequency of events performed by users on Android devices.
+
+Output the event names along with their corresponding counts, sorted in descending order of event count.
+
+**Schema**
+
+Table Name: user_events
+Name	Type
+user_id	INTEGER
+device_type	TEXT
+occurred_at	DATE_TIME
+event_type	TEXT
+event_name	TEXT
+
+**Solution**
+
+SELECT event_name, COUNT(occurred_at) AS event_count
+FROM user_events
+WHERE device_type='Android'
+    GROUP BY event_type
+ORDER BY event_count DESC
