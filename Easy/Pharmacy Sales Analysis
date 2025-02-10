@@ -1,0 +1,21 @@
+Query: Write a query to identify pharmaceutical manufacturers associated with drugs that caused losses for CVS Health. Calculate the total amount of losses 
+incurred and output the manufacturer's name, the count of drugs associated with losses, and the total losses in absolute value. Sort the results in descending
+order based on the highest losses, with the top losses displayed first.
+
+**Schema**
+
+Table Name: pharmacy_sales
+Name	Type
+product_id	INTEGER
+units_sold	INTEGER
+total_sales	FLOAT
+cogs	FLOAT
+manufacturer	TEXT
+drug	TEXT
+
+
+SELECT manufacturer, COUNT(drug) AS drug_count, ABS(SUM(total_sales)-SUM(cogs)) AS total_loss
+FROM pharmacy_sales
+GROUP BY manufacturer,drug
+HAVING total_sales<cogs
+ORDER BY total_loss DESC
