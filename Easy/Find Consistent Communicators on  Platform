@@ -1,0 +1,21 @@
+Query: Engagement is crucial for any platform's success. Your task is to analyze user engagement data stored in a database and identify users who consistently interact with the platform.
+
+Specifically, you'll need to determine which users have more than one session and maintain an average session duration > 5
+
+Round off average session duration to 1 decimal point.
+
+**Schema**
+
+Table Name: sessions
+Name	Type
+id	INTEGER
+userid	INTEGER
+duration	NUMERIC
+
+**Solution**
+
+ELECT userid, ROUND(AVG(duration),1) AS avg_duration
+FROM sessions 
+GROUP BY userid
+HAVING COUNT(id)>1
+AND avg_duration>5
