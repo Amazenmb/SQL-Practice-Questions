@@ -1,0 +1,24 @@
+Given two tables, Project and Employee, containing project assignments and employee information respectively, the task is to write an SQL query to calculate the average experience years of all employees for each project, rounded to 2 digits.
+
+Order the response by average experience
+
+**Schema**
+
+Table Name: Project
+Name	Type
+project_id	INTEGER
+employee_id	INTEGER
+
+Table Name: Employee
+Name	Type
+employee_id	INTEGER
+name	TEXT
+experience_years	INTEGER
+
+
+**Solution**
+SELECT p.project_id, AVG(e.experience_years) AS average_years
+FROM Project AS p 
+INNER JOIN Employee AS e 
+ON p.employee_id=e.employee_id
+GROUP BY p.project_id
