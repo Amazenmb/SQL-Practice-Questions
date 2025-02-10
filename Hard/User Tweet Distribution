@@ -1,0 +1,21 @@
+Write an SQL query to generate a histogram of tweets posted per user in the year 2022. Group users by the number of tweets they posted, and output the count
+of users in each group.
+
+**Schema**
+Table Name: tweets
+Name	Type
+tweet_id	INTEGER
+user_id	INTEGER
+msg	TEXT
+tweet_date	DATE_TIME
+
+**Solution**
+SELECT tweet_count AS tweet_bucket, COUNT(*) AS users_num
+FROM (
+    SELECT user_id, COUNT(*) AS tweet_count
+    FROM tweets
+    WHERE strftime('%Y', tweet_date) = '2022'
+    GROUP BY user_id
+) AS user_tweet_counts
+GROUP BY tweet_count;
+    
