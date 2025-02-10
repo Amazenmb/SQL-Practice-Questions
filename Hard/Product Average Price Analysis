@@ -1,0 +1,27 @@
+You are given two tables, Prices and UnitsSold, containing data about product prices and units sold respectively. The Prices table includes the product ID, start date, end date, and price of each product over specific periods. The UnitsSold table records the product ID, purchase date, and units sold for each transaction.
+
+Write an SQL query to calculate the average selling price for each product, rounded to 1 decimal places. Order the results by product id
+
+**Schema**
+
+Table Name: Prices
+Name	Type
+product_id	INTEGER
+start_date	DATE
+end_date	DATE
+price	INTEGER
+
+Table Name: UnitsSold
+Name	Type
+product_id	INTEGER
+purchase_date	DATE
+units	INTEGER
+
+**Solution**
+SELECT p.product_id, IFNULL(ROUND(SUM(p.price*u.units)/SUM(u.units),1),0) AS average_price
+FROM Prices AS p 
+INNER JOIN UnitsSold AS u 
+ON p.product_id = u.product_id
+    AND u.purchase_date BETWEEN p.start_date AND p.end_date
+GROUP BY p.product_id
+Order by p.product_id
