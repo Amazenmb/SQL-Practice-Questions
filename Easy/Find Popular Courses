@@ -1,0 +1,19 @@
+Q. Given a table representing student enrollment in various classes, write an SQL query to find all the classes that have at least five students enrolled.
+
+Each row of the table Enrolments indicates the name of a student and the class in which they are enrolled.
+
+Write an SQL query to find all classes that have at least five students enrolled. Return the result table in any order.
+
+**Schema**
+Table Name: Enrollments
+Name	      Type
+student    	TEXT
+class	      TEXT
+
+
+**Solution**
+
+SELECT class
+FROM Enrollments
+GROUP BY class
+HAVING COUNT(student)>=5
