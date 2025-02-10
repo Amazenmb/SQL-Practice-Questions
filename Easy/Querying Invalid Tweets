@@ -1,0 +1,13 @@
+Q. In a social media app, there's a need to detect tweets that exceed a certain character limit.
+
+Given a table containing tweet IDs and their content, determine the IDs of tweets whose content length exceeds 15 characters.
+
+**Schema**
+
+Table Name: Tweets
+
+  Name	          Type
+tweet_id	     INTEGER
+content	        TEXT
+
+Expected Output: tweet_id 
