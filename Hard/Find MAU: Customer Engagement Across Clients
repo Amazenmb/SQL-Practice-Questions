@@ -1,0 +1,18 @@
+Query: Your task is to write a SQL query that reveals the number of unique users actively engaging with each client on a monthly basis.
+
+**Schema**
+Table Name: fact_events
+Name	Type
+id	INTEGER
+time_id	DATE_TIME
+user_id	TEXT
+customer_id	TEXT
+client_id	TEXT
+event_type	TEXT
+event_id	INTEGER
+
+**Solution**
+SELECT client_id, strftime('%m',time_id) AS month, COUNT(DISTINCT user_id) AS user_num
+FROM fact_events
+GROUP BY client_id, month
+ORDER BY client_id,month
