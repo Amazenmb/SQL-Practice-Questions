@@ -1,0 +1,17 @@
+Q. You are tasked with identifying employees whose annual salary falls either below or equal to 30,000 or above or equal to 70,000.
+Retrieve the complete details of these employees from the database.
+
+**Schema**
+
+Table Name: employees
+
+Name	            Type
+emp_id	        INTEGER
+join_date	      DATE_TIME
+quit_date	      DATE_TIME
+annual_income	  INTEGER
+
+**Solution**
+SELECT *
+FROM employees
+WHERE annual_income>=70000 OR annual_income<=30000
