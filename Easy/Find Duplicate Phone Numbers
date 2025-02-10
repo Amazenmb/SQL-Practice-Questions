@@ -1,0 +1,16 @@
+Query: Given a table Person with columns id and phone_number, where id is the primary key and phone_number represents phone numbers, 
+write a SQL query to identify all duplicate phone numbers in the table.
+
+**Schema**
+
+Table Name: Person
+Name	Type
+id	INTEGER
+phone_number	TEXT
+
+**Solution**
+
+SELECT phone_number
+FROM Person
+GROUP BY phone_number
+HAVING COUNT(id)>1
