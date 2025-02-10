@@ -1,0 +1,19 @@
+Query: Given the reviews table, create a SQL query to fetch the average star rating for each product, grouped by month. The output should present the month as a 
+numeric value, the product ID, and the average star rating rounded to one decimal place. Ensure the output is sorted by month and then by product ID.
+
+**Schema**
+
+Table Name: reviews
+Name	Type
+review_id	INTEGER
+user_id	INTEGER
+submit_date	DATE_TIME
+product_id	INTEGER
+stars	INTEGER
+
+**Solution**
+SELECT
+    CAST(strftime('%m', submit_date) AS INTEGER) AS mth, product_id AS product, ROUND(AVG(stars),1) AS avg_stars
+FROM reviews
+GROUP BY mth, product_id
+ORDER BY mth, product_id
