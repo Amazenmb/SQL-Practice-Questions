@@ -1,0 +1,35 @@
+Query: Write a SQL query to identify players who have played more than 10 matches but have scored fewer than 4 goals. Include their name, team, matches played,
+and goals scored.
+
+Expected Output: A table with player names, their team, number of matches played, and their goals scored.
+
+**Schema**
+
+Table Name: players
+Name	              Type
+player_id	        INTEGER
+name	              TEXT
+position	          TEXT
+team_id	          INTEGER
+goals_scored	    INTEGER
+assists	          INTEGER
+matches_played	  INTEGER
+salary	            FLOAT
+
+Table Name: teams
+Name	              Type
+team_id          	INTEGER
+team_name	          TEXT
+wins	            INTEGER
+losses	          INTEGER
+draws	            INTEGER
+league_position	   INTEGER
+budget	            FLOAT
+
+**Solution**
+SELECT p.name AS player_name, t.team_name, p.matches_played, p.goals_scored
+FROM players AS p 
+INNER JOIN teams AS t 
+ON p.team_id=t.team_id
+WHERE p.matches_played>10 
+AND p.goals_scored<4 
