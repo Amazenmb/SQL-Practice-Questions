@@ -1,0 +1,19 @@
+Query: Identify the top 5 products that generated the highest revenue in the first half of 2022 (January to June) and reveal their total earnings.
+
+**Schema**
+
+Table Name: online_orders
+Name	              Type
+product_id	      INTEGER
+cost_in_dollars  	INTEGER
+customer_id	      INTEGER
+date	            DATE_TIME
+units_sold	      INTEGER
+
+**Solution**
+
+SELECT product_id, SUM(cost_in_dollars*units_sold) AS revenue
+FROM online_orders
+GROUP BY product_id
+ORDER BY revenue DESC
+    LIMIT 5
