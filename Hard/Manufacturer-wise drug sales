@@ -1,0 +1,19 @@
+Query: Write an SQL query to calculate the total sales of drugs for each manufacturer. Round the total sales to the nearest million and present the results in descending order of total sales. In case of ties, sort them alphabetically by the manufacturer name.
+
+Results Format: The results should be formatted as follows: "$4 million".
+
+**Schema**
+Table Name: pharmacy_sales
+Name	Type
+product_id	INTEGER
+units_sold	INTEGER
+total_sales	FLOAT
+cogs	FLOAT
+manufacturer	TEXT
+drug	TEXT
+
+**Solution**
+SELECT manufacturer, '$'||CAST(ROUND(SUM(total_sales)/1000000.0) AS INTEGER)||' million' AS sale
+FROM pharmacy_sales
+    GROUP BY manufacturer
+ORDER BY SUM(total_sales) DESC, manufacturer
