@@ -1,0 +1,15 @@
+In a university, there is a database table named Teacher that stores information about the subjects taught by each teacher. The table has columns teacher_id, subject_id, and dept_id, where each row represents a teacher teaching a particular subject in a specific department.
+
+Write an SQL query to determine the count of unique subjects taught by each teacher.
+
+**Schema**
+Table Name: Teacher
+Name	Type
+teacher_id	INTEGER
+subject_id	INTEGER
+dept_id	INTEGER
+
+**Solution**
+SELECT teacher_id, COUNT(DISTINCT subject_id) AS cnt
+FROM Teacher
+GROUP BY teacher_id
