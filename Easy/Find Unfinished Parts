@@ -1,0 +1,16 @@
+Q. Hyundai Motors is facing production bottlenecks and needs assistance in extracting relevant data. 
+Your task is to write a query that identifies parts in the assembly process that have not yet been finished.
+
+**Schema**
+
+Table Name: parts_assembly
+
+Name	                Type
+part	                TEXT
+finish_date	        DATE_TIME
+assembly_step	        INTEGER
+
+**Solution**
+SELECT part, assembly_step
+FROM parts_assembly
+WHERE finish_date ISNULL
