@@ -1,0 +1,21 @@
+Q. Given a table World with columns name, continent, area, population, and gdp, where each row represents information about a country, write an SQL query
+to retrieve the name, population, and area of countries considered large. A country is considered large if it has an area of at least three million 
+square kilometers (3000000 km²) or a population of at least twenty-five million people (25000000).
+
+**Schema**
+
+Table Name: World
+
+Name	              Type
+name	              TEXT
+continent	          TEXT
+area	            INTEGER
+population	     BIG_INTEGER
+gdp	            BIG_INTEGER
+
+**Solution**
+
+SELECT name, population, area
+FROM World
+WHERE area>=3000000 
+OR population>=25000000
