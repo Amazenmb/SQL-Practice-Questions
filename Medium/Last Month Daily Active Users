@@ -1,0 +1,16 @@
+Given a table User_Activity_Log containing user activities on a social media website, find the count of active users for each day over the past 30 days 
+until the date 2024-01-26 inclusively. A user is considered active on a particular day if they have performed at least one activity on that day.
+
+*Schema**
+Table Name: User_Activity_Log
+Name	Type
+user_id	INTEGER
+session_id	INTEGER
+activity_date	DATE
+activity_type	TEXT
+
+**Solution**
+SELECT activity_date as day, COUNT(DISTINCT user_id) AS active_users
+FROM User_Activity_Log
+    WHERE activity_date <='2024-01-26'
+GROUP BY activity_date
