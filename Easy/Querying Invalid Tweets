@@ -12,7 +12,7 @@ content	        TEXT
 
 Expected Output: tweet_id 
 
-Solution:
+**Solution:**
 SELECT tweet_id 
 FROM Tweets
 WHERE LENGTH(content)>15
