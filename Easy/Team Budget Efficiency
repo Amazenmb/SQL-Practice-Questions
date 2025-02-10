@@ -1,0 +1,24 @@
+Query: Write a SQL query to find the top 3 teams that have achieved the highest number of wins with the lowest budget. The "win-to-budget ratio"
+is calculated as the number of wins divided by the budget, scaled by a factor of 1,000,000, and rounded to two decimal places. Show the team name, 
+number of wins, and their budget, sorted by the best win-to-budget ratio.
+
+Expected Output: A table with team names, number of wins, and their budget, sorted by the best win-to-budget ratio.
+
+**Schema**
+
+Table Name: teams
+Name	            Type
+team_id        	INTEGER
+team_name        	TEXT
+wins	          INTEGER
+losses	        INTEGER
+draws	          INTEGER
+league_position	INTEGER
+budget	          FLOAT
+
+**Solution**
+
+SELECT team_name,  wins, budget,  ROUND((wins*1000000.0)/budget,2) as win_to_budget_ratio
+FROM teams
+ORDER BY win_to_budget_ratio DESC
+LIMIT 3
