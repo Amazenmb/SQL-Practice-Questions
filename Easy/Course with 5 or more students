@@ -1,0 +1,17 @@
+Write an SQL query to report all the classes that have at least five students.
+
+Return the result table in any order.
+
+**Schema**
+
+Table Name: Courses
+Name	Type
+student	TEXT
+class	TEXT
+
+**Solution**
+
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT(Student)>=5
