@@ -1,0 +1,19 @@
+Query: The Marketing department is looking to understand their recent hiring trends. Find the number of employees hired to the Marketing
+department in the third quarter (July, August, and September) of 2023.
+
+**Schema**
+
+Table Name: employee
+Name	Type
+employee_id	INTEGER
+first_name	TEXT
+last_name	TEXT
+salary	INTEGER
+hire_date	DATE
+department	TEXT
+
+**Solution**
+SELECT  COUNT(employee_id) AS n_marketing_hires_q3
+FROM employee
+WHERE department='Marketing'
+AND hire_date BETWEEN '2023-07-01' AND '2023-09-30'
