@@ -1,0 +1,16 @@
+Your team at Citibank is gearing up to launch a new credit card, and in preparation, you're conducting an analysis to understand the monthly
+issuance patterns for each credit card. Write a query to display the name of each credit card and the difference in the number of cards issued between 
+the month with the highest issuance and the lowest issuance. Arrange the results based on the largest disparity.
+
+Table Name: monthly_cards_issued
+Name	Type
+issue_month	INTEGER
+issue_year	INTEGER
+card_name	TEXT
+issued_amount	INTEGER
+
+**Solution**
+SELECT card_name, MAX(issued_amount) - MIN(issued_amount) AS difference
+FROM monthly_cards_issued
+GROUP BY card_name
+ORDER BY difference DESC
