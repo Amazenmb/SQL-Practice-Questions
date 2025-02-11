@@ -1,0 +1,29 @@
+Calculate the conversion rate (conversion_rate) from 'view' to 'purchase' for each user. The conversion rate is defined as the percentage of users who have viewed at least one product and subsequently made a purchase, relative to all users who have viewed a product. The formula for the conversion rate is:
+
+conversion_rate = (number_of_users_who_made_a_purchase / number_of_users_who_viewed_at_least_one_product) * 100
+The final conversion rate should be rounded to one decimal place
+
+**Schema**
+Table Name: user_activity
+Name	Type
+session_id	INTEGER
+user_id	INTEGER
+event_type	TEXT
+event_timestamp	DATE_TIME
+
+**Solution**
+
+WITH viewed_users AS (
+    SELECT DISTINCT user_id
+    FROM user_activity
+    WHERE event_type = 'view'
+),
+purchased_users AS (
+    SELECT DISTINCT user_id
+    FROM user_activity
+    WHERE event_type = 'purchase'
+)
+SELECT 
+    ROUND((CAST(COUNT(DISTINCT pu.user_id) AS FLOAT) / COUNT(DISTINCT vu.user_id)) * 100, 2) AS conversion_rate
+FROM viewed_users vu
+LEFT JOIN purchased_users pu ON vu.user_id = pu.user_id;
