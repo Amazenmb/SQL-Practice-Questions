@@ -1,0 +1,39 @@
+You are tasked with identifying Netflix users who have recently engaged with the show "Stranger Things" and are currently active subscribers. You are provided 
+with the following database structure, which includes information about users, their viewing history, and the shows they have watched.
+
+Write a SQL query to retrieve all active users who have watched more than 10 episodes of the show "Stranger Things" within the last 30 days.
+
+Expected Output: The query should return a list of user IDs (user_id) and the number of episodes (episodes_watched) of "Stranger Things" they have watched 
+in the last 30 days, where the number of episodes is greater than 10.
+
+**Schema**
+Table Name: users
+Name	Type
+user_id	INTEGER
+active	INTEGER
+
+Table Name: shows
+Name	Type
+show_id	INTEGER
+show_name	TEXT
+
+Table Name: viewing_history
+Name	Type
+user_id	INTEGER
+show_id	INTEGER
+episode_id	INTEGER
+watch_date	TEXT
+
+**Solution**
+SELECT u.user_id, COUNT(v.episode_id) AS episodes_watched
+FROM users AS u 
+    INNER JOIN viewing_history AS v 
+    ON u.user_id=v.user_id
+INNER JOIN shows AS s 
+ON v.show_id=s.show_id
+WHERE s.show_name='Stranger Things'
+    AND watch_date BETWEEN '2025-01-01' AND '2025-01-31'
+
+GROUP BY v.user_id
+HAVING COUNT(episode_id)>10
+
