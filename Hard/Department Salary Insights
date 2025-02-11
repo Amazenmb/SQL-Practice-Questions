@@ -1,0 +1,19 @@
+Analyze employee salary data within their respective departments to uncover valuable insights.
+
+Retrieve each employee's first name, salary, and the average salary within their department, presented concisely for effective analysis.
+
+Round off the average salary to one decimal unit. Order the results by employee id
+
+**Schema**
+Table Name: employee
+Name	Type
+id	INTEGER
+first_name	TEXT
+last_name	TEXT
+department	TEXT
+salary	INTEGER
+
+**Solution**
+SELECT department, first_name, salary, ROUND(AVG(salary) OVER (PARTITION BY department),1) AS avg
+FROM employee
+ORDER BY id
