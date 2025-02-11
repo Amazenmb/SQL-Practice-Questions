@@ -1,0 +1,21 @@
+Create an SQL query to retrieve the employees who have a higher salary than their respective managers.
+
+The output table can be in any order.
+
+**Schema**
+Table Name: Employee
+Name	Type
+id	INTEGER
+name	TEXT
+salary	INTEGER
+managerId	INTEGER
+
+**Solution**
+SELECT
+    a.name AS 'Employee'
+FROM
+    Employee AS a,
+    Employee AS b
+WHERE
+    a.ManagerId = b.Id
+        AND a.Salary > b.Salary
