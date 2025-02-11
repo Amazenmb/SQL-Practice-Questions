@@ -1,0 +1,20 @@
+For a given table containing Facebook posts, your task is to create a query that identifies users who posted at least twice in the year 2021. For each such user, 
+find the number of days between their first and last post within that year. Output the user_id along with the corresponding number of days between the first and 
+last post for each qualifying user.
+
+**Schema**
+Table Name: posts
+Name	Type
+user_id	INTEGER
+post_id	INTEGER
+post_date	DATE_TIME
+post_content	TEXT
+
+**Solution**
+SELECT 
+	user_id, 
+    CAST(ROUND(MAX(julianday(post_date)) - MIN(julianday(post_date))) AS INTEGER) AS days_between
+FROM posts
+WHERE strftime('%Y', post_date) = '2021'
+GROUP BY user_id
+HAVING COUNT(post_id)>1;
