@@ -1,0 +1,21 @@
+We aim to analyze the review scores for the renowned movie "The Matrix" on a movie review platform.
+
+Given a table containing movie reviews, write an SQL query to determine the count of reviews for each rating score received by "The Matrix".
+
+The output should include the movie title, rating score, and the number of reviews with that score.
+
+**Schema**
+Table Name: movie_reviews
+Name	Type
+movie_id	INTEGER
+movie_title	TEXT
+reviewer_id	INTEGER
+rating_score	FLOAT
+review_text	TEXT
+review_date	DATE
+
+**Solution**
+SELECT movie_title, rating_score, COUNT(reviewer_id) AS count 
+FROM movie_reviews
+    WHERE movie_title='The Matrix'
+GROUP BY rating_score
