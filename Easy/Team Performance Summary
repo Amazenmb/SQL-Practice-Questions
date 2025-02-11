@@ -1,0 +1,34 @@
+Query: Write a SQL query to generate a summary report of each team’s performance. The report should show the team name, number of wins, losses, draws, total goals scored by all its players, and the team’s league position.
+
+Expected Output: A table listing team names, their number of wins, losses, draws, total goals, and league position.
+
+**Schema**
+Table Name: players
+Name	Type
+player_id	INTEGER
+name	TEXT
+position	TEXT
+team_id	INTEGER
+goals_scored	INTEGER
+assists	INTEGER
+matches_played	INTEGER
+salary	FLOAT
+
+Table Name: teams
+Name	Type
+team_id	INTEGER
+team_name	TEXT
+wins	INTEGER
+losses	INTEGER
+draws	INTEGER
+league_position	INTEGER
+budget	NUMERIC
+
+
+**Solution
+SELECT t.team_name, t.wins, t.losses, t.draws, SUM(p.goals_scored) AS total_goals, t.league_position
+FROM teams AS t 
+INNER JOIN players as p 
+ON t.team_id=p.team_id
+GROUP BY p.team_id 
+ORDER BY league_position
