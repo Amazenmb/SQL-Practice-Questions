@@ -1,0 +1,14 @@
+Given a table representing collaborations between actors and directors, find all pairs of actor_id and director_id where the actor and director collaborated at least three times.
+
+**Schema**
+Table Name: ActorDirector
+Name	Type
+actor_id	INTEGER
+director_id	INTEGER
+timestamp	INTEGER
+
+**Solution**
+SELECT actor_id, director_id
+FROM ActorDirector
+GROUP BY actor_id, director_id
+HAVING COUNT(timestamp)>=3
