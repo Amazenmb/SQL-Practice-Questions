@@ -1,0 +1,25 @@
+You are given a dataset rainfall_records that tracks daily rainfall data across multiple cities.Your task is to find
+the longest consecutive streak of days with non-zero rainfall for each city sorted by city_id. A streak is defined as 
+consecutive days where rainfall_mm > 0, and the longest streak should be determined separately for each city.
+
+**Schema**
+
+Table Name: rainfall_records
+Name	Type
+city_id	INTEGER
+record_date	DATE
+rainfall_mm	FLOAT
+
+**Solution**
+WITH streaks AS (
+    SELECT city_id, record_date,
+           rainfall_mm > 0 AS is_raining,
+           SUM(CASE WHEN rainfall_mm > 0 THEN 0 ELSE 1 END) OVER (PARTITION BY city_id ORDER BY record_date) AS streak_group
+    FROM rainfall_records
+),
+grouped_streaks AS (
+    SELECT city_id, streak_group, COUNT(*) AS streak_length
+    FROM streaks
+    WHERE is_raining
+    GROUP BY city_id, streak_group
+)
