@@ -1,0 +1,17 @@
+You're managing a database of employee salaries at a large corporation. Unfortunately, the data contains outdated salary information for some employees.
+To ensure everyone receives fair and accurate compensation, you need to update these salaries based on the company's annual raise policy.
+
+**Schema**
+Table Name: ms_employee_salary
+Name	Type
+id	INTEGER
+first_name	TEXT
+last_name	TEXT
+department_id	INTEGER
+salary	INTEGER
+
+**Solution**
+SELECT id, first_name, last_name, department_id, MAX(salary) as current_salary
+FROM ms_employee_salary
+    GROUP BY id
+ORDER BY id
