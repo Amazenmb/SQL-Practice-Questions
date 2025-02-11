@@ -1,0 +1,18 @@
+Write a query to count the number of website visits per month for a given domain. The unique identifier for a visit is the combination of session_id and 
+visitor_id. Output the year_month in YYYY-MM format and the corresponding visit count.
+
+**Schema**
+Table Name: website_visits
+Name	Type
+session_id	INTEGER
+visitor_id	INTEGER
+domain	TEXT
+visit_date	DATE_TIME
+
+**Solution**
+
+SELECT strftime('%Y-%m',visit_date) AS year_month, COUNT(session_id) AS count
+FROM website_visits
+    WHERE domain='example.com'
+GROUP BY year_month
+
