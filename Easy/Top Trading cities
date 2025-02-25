@@ -1,0 +1,30 @@
+Q. Assuming you have access to the tables containing information about completed trade orders (trades) and user details (users) in a Robinhood trading system,
+your task is to create a query that retrieves the top three cities with the highest number of completed trade orders, listed in descending order. The output 
+should display the city name and the corresponding total number of completed trade orders.
+
+Schema: 
+Table Name: trades
+Name	Type
+order_id	INTEGER
+user_id	INTEGER
+price	FLOAT
+quantity	INTEGER
+status	TEXT
+timestamp	DATE_TIME
+Table Name: users
+Name	Type
+user_id	INTEGER
+city	TEXT
+email	TEXT
+signup_date	DATE_TIME
+
+
+Soln.
+SELECT u.city, COUNT(t.order_id) aS total_orders
+FROM trades as t 
+JOIN users as u 
+ON t.user_id=u.user_id
+WHERE status="Completed"
+GROUP BY u.city
+ORDER BY total_orders DESC
+LIMIT 3
