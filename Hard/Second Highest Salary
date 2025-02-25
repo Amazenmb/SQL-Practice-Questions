@@ -7,6 +7,7 @@ Name	Type
 id	INTEGER
 salary	INTEGER
 
+**Also in Medium Section- Check it out**
 
 **Soln1- Using Nested Select Statement**
 
