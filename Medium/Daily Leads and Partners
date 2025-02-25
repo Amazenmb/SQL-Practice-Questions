@@ -1,0 +1,16 @@
+Write an SQL query that will, for each date_id and make_name, return the number of distinct lead_id's and distinct partner_id's.
+
+
+Schema:
+
+Table Name: DailySales
+Name	Type
+date_id	DATE
+make_name	TEXT
+lead_id	INTEGER
+partner_id	INTEGER
+
+Soln.
+SELECT date_id, make_name, COUNT(DISTINCT lead_id) AS unique_leads, COUNT(DISTINCT partner_id ) AS unique_partners
+    FROM DailySales
+GROUP BY date_id, make_name
