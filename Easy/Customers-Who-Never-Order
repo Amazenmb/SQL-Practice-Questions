@@ -1,0 +1,16 @@
+Write an SQL query to select all customers who have not ordered anything.
+
+Schema: Table Name: Customers
+Name	Type
+id	INTEGER
+name	TEXT
+Table Name: Orders
+Name	Type
+id	INTEGER
+customerId	INTEGER
+
+Soln. Select c.name as Customers 
+    FROM Customers as c 
+            LEFT JOIN Orders as o 
+ON c.id=o.customerId
+where o.customerId ISNULL
