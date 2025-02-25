@@ -1,0 +1,33 @@
+
+Determine the Retail company that has achieved the highest profitability within the North American continent. Retrieve both the company name and its 
+primary country of operation.
+
+Schema
+Table Name: global_retail_2015_2020
+Name	Type
+company	TEXT
+sector	TEXT
+country	TEXT
+continent	TEXT
+profits	NUMERIC
+
+Soln.
+--Method 1
+
+SELECT company, country 
+FROM global_retail_2015_2020
+WHERE sector='Retail'
+AND continent='North America'
+ORDER BY profits DESC
+LIMIT 1
+
+--Method 2
+
+SELECT company, country
+FROM global_retail_2015_2020
+WHERE 
+profits=(SELECT MAX(profits)
+    FROM global_retail_2015_2020
+    WHERE sector='Retail' AND 
+    continent='North America')
+    
