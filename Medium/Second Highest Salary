@@ -1,0 +1,25 @@
+Write an SQL query to report the second highest salary from the Employee table. If there is no second highest salary, the query should report null.
+
+Schema:
+Table Name: Employee
+Name	Type
+id	INTEGER
+salary	INTEGER
+
+Soln.
+
+Method 1:
+
+Select MIN(salary) as SecondHighestSalary
+FROM 
+ (SELECT salary
+FROM Employee
+ORDER BY salary DESC
+LIMIT 2)
+
+Method 2:
+
+SELECT DISTINCT(salary) as SecondHighestSalary    
+FROM Employee
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1
