@@ -1,0 +1,25 @@
+A Microsoft Azure Supercloud customer is a company which buys at least 1 product from each product category.
+
+Write a query to report the company ID which is a Supercloud customer.
+
+Schema:
+
+Table Name: customer_contracts
+Name	Type
+customer_id	INTEGER
+product_id	INTEGER
+amount	INTEGER
+Table Name: products
+Name	Type
+product_id	INTEGER
+product_category	TEXT
+product_name	TEXT
+
+Soln.
+SELECT c.customer_id 
+FROM customer_contracts AS c 
+JOIN products AS p
+ON c.product_id=p.product_id
+GROUP BY c.customer_id 
+HAVING COUNT(DISTINCT p.product_category)= (SELECT(COUNT(DISTINCT(product_category)))
+FROM products)
